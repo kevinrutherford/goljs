@@ -13,8 +13,6 @@ svg {
 }
 
 .cell {
-  width: 3px;
-  height: 3px;
   stroke-width: .5px;
   stroke: #666;
   fill: #000;
