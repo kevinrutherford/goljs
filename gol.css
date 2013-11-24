@@ -1,0 +1,22 @@
+#gol {
+  margin: 20px auto;
+}
+
+svg {
+  background-color: #0FF;
+  cursor: default;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  -o-user-select: none;
+  user-select: none;
+}
+
+.cell {
+  width: 3px;
+  height: 3px;
+  stroke-width: .5px;
+  stroke: #666;
+  fill: #000;
+}
+
