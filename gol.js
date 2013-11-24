@@ -6,7 +6,7 @@ var state = 'dead';
 for (var i = 0; i < cols; i++) {
   //state = (state == 'alive') ? 'dead' : 'alive';
   for (var j = 0; j < cols; j++) {
-    cellData.push({x: i, y: j, state: state});
+    cellData.push({i: i, j: j, state: state});
   }
 }
 
@@ -15,7 +15,7 @@ function gen(cells, i) {
     cells[i-cols-1], cells[i-cols], cells[i-cols+1],
     cells[i-1], cells[i+1],
     cells[i+cols-1], cells[i+cols], cells[i+cols+1]
-  ].filter(function(cell) { return (typeof cell != 'undefined'); });
+  ].filter(function(cell) { return cell; });
   var numal = neighbours.filter(function(cell) { return (cell.state == 'alive'); }).length;
   var cell = cells[i];
   if (numal == 3)
@@ -30,12 +30,12 @@ function generation(cells) {
   for (var i = 0; i < cols*cols; i++) {
     var cell = cells[i];
     var ns = gen(cells, i);
-    nextgen.push({x: cell.x, y: cell.y, state: ns});
+    nextgen.push({i: cell.i, j: cell.j, state: ns});
   }
   return nextgen;
 }
 
-function mouseout(d) {
+function set_alive(d) {
   d.state = 'alive';
 }
 
@@ -46,14 +46,14 @@ function golUpdate(cells) {
     .data(cellData);
 
   cells.enter()
-    .append("rect");
-
-  cells.attr("x", function(d) { return d.x * dim; })
-    .attr("y", function(d) { return d.y * dim; })
+    .append("rect")
     .attr("width", dim)
     .attr("height", dim)
-    .attr("class", function(d) { return d.state; })
-    .on('mouseout', mouseout);
+    .attr("x", function(d) { return d.i * dim; })
+    .attr("y", function(d) { return d.j * dim; })
+    .on('mouseout', set_alive);
+
+  cells.attr("class", function(d) { return d.state; });
 }
 
 function gol_start() {
@@ -61,8 +61,6 @@ function gol_start() {
     .attr('width', cols * dim)
     .attr('height', cols * dim);
 
-  setInterval(function() {
-    golUpdate(cellData);
-  }, 500);
+  setInterval(function() { golUpdate(cellData); }, 500);
 };
 
