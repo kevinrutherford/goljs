@@ -12,9 +12,15 @@ svg {
   user-select: none;
 }
 
-.cell {
+rect.dead {
   stroke-width: .5px;
   stroke: #666;
   fill: #000;
+}
+
+rect.live {
+  stroke-width: .5px;
+  stroke: #666;
+  fill: #aaa;
 }
 
