@@ -18,9 +18,9 @@ rect.dead {
   fill: #000;
 }
 
-rect.live {
+rect.alive {
   stroke-width: .5px;
   stroke: #666;
-  fill: #aaa;
+  fill: pink;
 }
 
