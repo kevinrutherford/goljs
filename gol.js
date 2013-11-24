@@ -2,11 +2,9 @@ var dim = 5;
 var cols = 100;
 
 var cellData = [];
-var state = 'dead';
 for (var i = 0; i < cols; i++) {
-  //state = (state == 'alive') ? 'dead' : 'alive';
   for (var j = 0; j < cols; j++) {
-    cellData.push({i: i, j: j, state: state});
+    cellData.push({i: i, j: j, state: 'dead'});
   }
 }
 
@@ -29,8 +27,7 @@ function generation(cells) {
   var nextgen = [];
   for (var i = 0; i < cols*cols; i++) {
     var cell = cells[i];
-    var ns = gen(cells, i);
-    nextgen.push({i: cell.i, j: cell.j, state: ns});
+    nextgen.push({i: cell.i, j: cell.j, state: gen(cells, i)});
   }
   return nextgen;
 }
