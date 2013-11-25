@@ -1,10 +1,10 @@
 var dim = 5;
 var cols = 100;
 
-var cellData = [];
+var grid = [];
 for (var i = 0; i < cols; i++) {
   for (var j = 0; j < cols; j++) {
-    cellData.push({i: i, j: j, state: 'dead'});
+    grid.push({i: i, j: j, state: 'dead'});
   }
 }
 
@@ -37,10 +37,10 @@ function set_alive(d) {
 }
 
 function golUpdate(cells) {
-  cellData = generation(cells);
+  grid = generation(cells);
   var svg = d3.select('svg');
   var cells = svg.selectAll("rect")
-    .data(cellData);
+    .data(grid);
 
   cells.enter()
     .append("rect")
@@ -58,6 +58,6 @@ function gol_start() {
     .attr('width', cols * dim)
     .attr('height', cols * dim);
 
-  setInterval(function() { golUpdate(cellData); }, 500);
+  setInterval(function() { golUpdate(grid); }, 500);
 };
 
